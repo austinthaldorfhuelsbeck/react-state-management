@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
+const handleClick = (e) => console.log(e.target);
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
-  );
+  return <button onClick={handleClick}>Button!</button>;
 }
 
 export default App;
