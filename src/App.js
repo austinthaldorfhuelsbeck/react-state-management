@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 
-const handleClick = (e) => console.log(e.target);
-
 function App() {
-  return <button onClick={handleClick}>Button!</button>;
+  const [subscribed, setSubscribed] = useState(false);
+  return (
+    <section>
+      <p>Click subscribe to stay updated!</p>
+      <button onClick={() => setSubscribed(!subscribed)}>
+        {subscribed ? "Unsubscribe" : "Subscribe"}
+      </button>
+    </section>
+  );
 }
 
 export default App;
