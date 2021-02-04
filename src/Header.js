@@ -1,6 +1,13 @@
+import React from "react";
+
 function Header({ loggedIn, handleLoggedInClick }) {
-  // TODO: define loggedIn
+  // button text changes based on loggedIn state
+  // and calls toggleLoggedIn on click
   return (
-    <button onClick={/* TODO */}>{loggedIn ? "Log Out" : "Log In"}</button>
+    <button onClick={handleLoggedInClick}>
+      {loggedIn ? "Log Out" : "Log In"}
+    </button>
   );
 }
+
+export default Header;
