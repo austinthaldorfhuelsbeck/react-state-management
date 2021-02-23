@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-function SubscriberForm() {
+function RSVPForm() {
   const initialFormState = {
     name: "",
-    email: "",
-    referral: "",
     age: "",
-    subscription: true,
+    newMember: false,
+    comment: "",
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   const handleChange = ({ target }) => {
@@ -19,7 +18,8 @@ function SubscriberForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted:", formData);
+    const formStr = `${formData.name}, ${formData.age}, ${formData.newMember}, ${formData.comment}`;
+    console.log(formStr);
     setFormData({ ...initialFormState });
   };
 
@@ -36,78 +36,44 @@ function SubscriberForm() {
         />
       </label>
       <br />
-      <label htmlFor="email">
-        Your Email:
-        <input
-          id="email"
-          type="email"
-          name="email"
+      <label htmlFor="age">
+        What is your age?
+        <select
+          id="age"
+          name="age"
           onChange={handleChange}
-          value={formData.email}
+          value={formData.age}
+        >
+          <option value="">-- Select an Option --</option>
+          <option value="nan">Prefer not to say</option>
+          <option value="zeroToNineteen">0-19</option>
+          <option value="twentiesThirties">20-39</option>
+          <option value="fortiesFifties">40-59</option>
+          <option value="sixtyPlus">60+</option>
+        </select>
+        <br />
+      </label>
+      <br />
+      <label htmlFor="newMember">
+        New Member?
+        <input
+          id="newMember"
+          type="checkbox"
+          name="newMember"
+          onChange={handleChange}
+          checked={formData.newMember}
+          value="newMember"
         />
       </label>
       <br />
-      <label htmlFor="referral">
-        How did you hear about us?
-        <select
-          id="referral"
-          name="referral"
-          onChange={handleChange}
-          value={formData.referral}
-        >
-          <option value="">-- Select an Option --</option>
-          <option value="twitter">Twitter</option>
-          <option value="wom">Word of Mouth</option>
-          <option value="youtube">YouTube</option>
-        </select>
-      </label>
-      <br />
-      <fieldset>
-        <legend>How old are you?</legend>
-        <label htmlFor="low">
-          Under 18
-          <input
-            id="low"
-            type="radio"
-            name="age"
-            onChange={handleChange}
-            value="low"
-            checked={formData.age === "low"}
-          />
-        </label>
-        <label htmlFor="middle">
-          18 - 60
-          <input
-            id="middle"
-            type="radio"
-            name="age"
-            onChange={handleChange}
-            value="middle"
-            checked={formData.age === "middle"}
-          />
-        </label>
-        <label htmlFor="high">
-          Above 60
-          <input
-            id="high"
-            type="radio"
-            name="age"
-            onChange={handleChange}
-            value="high"
-            checked={formData.age === "high"}
-          />
-        </label>
-      </fieldset>
-      <br />
-      <label htmlFor="subscription">
-        Receive email notifications?
+      <label htmlFor="comment">
+        Comments:
         <input
-          id="subscription"
-          type="checkbox"
-          name="subscription"
+          id="comment"
+          type="text"
+          name="comment"
           onChange={handleChange}
-          checked={formData.subscription}
-          value="subscription"
+          value={formData.comment}
         />
       </label>
       <br />
@@ -116,4 +82,4 @@ function SubscriberForm() {
   );
 }
 
-export default SubscriberForm;
+export default RSVPForm;
